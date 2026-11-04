@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Tilt Guard</title>
+<style>
+  body{margin:0;width:320px;font:13px/1.5 system-ui,sans-serif;background:#07070C;color:#E9ECF5}
+  main{padding:14px 16px}
+  h1{font-size:15px;margin:0 0 8px}h1 b{color:#C6FF3D}
+  label{display:block;font-size:12px;color:#9AA0B8;margin:10px 0 4px}
+  input{width:100%;box-sizing:border-box;background:#0F1018;border:1px solid #2A2C40;color:#E9ECF5;border-radius:8px;padding:8px;
+        font:13px ui-monospace,Consolas,monospace}
+  button{margin-top:8px;width:100%;border:0;border-radius:8px;padding:9px;font-weight:700;cursor:pointer;background:#C6FF3D;color:#07070C}
+  button.alt{background:#1A1C2A;color:#E9ECF5;border:1px solid #2A2C40}
+  .m{color:#9AA0B8;font-size:12px}.ok{color:#9BE564}.no{color:#FFC83D}
+  a{color:#2EE6FF}
+</style></head>
+<body><main>
+  <h1><b>Tilt Guard</b> for web platforms</h1>
+  <p class="m">Works on TradeLocker, Match-Trader, DXtrade, Tradovate, TopstepX and TradingView's trading panel.</p>
+  <label for="key">Your guard key</label>
+  <input id="key" placeholder="PCK-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
+  <button id="save">Save key</button>
+  <p class="m" id="keymsg">Copy it from <a href="https://propscopilot.com/guard" target="_blank">propscopilot.com/guard</a>.</p>
+  <div id="site"></div>
+</main><script src="popup.js"></script></body></html>

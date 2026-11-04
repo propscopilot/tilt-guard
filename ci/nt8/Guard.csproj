@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- NinjaTrader's own DLLs aren't public: this compiles the guard against small stand-ins of the NinjaTrader API it
+       uses, so C# mistakes are caught before a trader's NinjaScript Editor sees the file. -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <Compile Include="../../ninjatrader/PropsCopilotGuard.cs" />
+  </ItemGroup>
+</Project>

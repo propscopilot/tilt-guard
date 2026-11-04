@@ -1,0 +1,32 @@
+PropsCopilot Tilt Guard for MetaTrader 5 - set up once, about 2 minutes
+
+1. Copy PropsCopilotGuard.ex5 into MetaTrader: File > Open Data Folder > MQL5 > Experts.
+   Back in MetaTrader, right-click "Expert Advisors" in the Navigator and choose Refresh.
+2. Tools > Options > Expert Advisors: tick "Allow WebRequest for listed URL" and add
+   https://propscopilot.com
+3. Drag PropsCopilotGuard onto ONE chart of the account. On the Inputs tab paste your guard key
+   (propscopilot.com/guard shows it any time). On the Common tab tick "Allow Algo Trading". OK.
+4. Make sure the Algo Trading button on the toolbar is green.
+
+That's all. The guard reads the account by itself: the firm from your broker's server, the account size from
+your first deposit, and on a demo account it sets common challenge rules so you can try it straight away.
+The account appears in your cockpit within seconds; press "Looks right", or tap another challenge.
+
+Good to know
+- The panel sits in the chart's bottom-left corner, clear of the one-click trading buttons.
+- Exits, stops and flatten are never blocked. Locks apply to this account only.
+- The guard works while this terminal is open with Algo Trading on. For always-on protection, run
+  MetaTrader on a VPS. If the guard goes offline during a lock, we email you.
+- Your locks are kept on our server: removing or reinstalling the guard does not lift a lock.
+- No broker password is ever asked for or sent anywhere. Try it on a demo first, and check your
+  prop firm allows a risk-manager EA (most do). The guard never opens trades.
+
+Other platforms (same guard key, same cockpit; steps at propscopilot.com/guard)
+- MetaTrader 4: PropsCopilotGuard.ex4 into File > Open Data Folder > MQL4 > Experts, Refresh the Navigator, allow
+  WebRequest for https://propscopilot.com, drag onto one chart, paste your key, AutoTrading on.
+- cTrader: double-click PropsCopilotGuard.algo, start it on one chart with your key in "Guard key".
+- NinjaTrader 8: download PropsCopilotGuard.cs while signed in (your key is inside), save it in
+  Documents\NinjaTrader 8\bin\Custom\AddOns, then NinjaScript Editor > F5. It guards accounts on live connections.
+- Web platforms (TradeLocker, Match-Trader, DXtrade, Tradovate, TopstepX, TradingView's trading panel): the browser
+  guard for Chrome, Edge or Brave. Unzip, chrome://extensions > Developer mode > Load unpacked, paste your key in
+  the Tilt Guard icon. In the browser the guard stops a refused order before it is sent.

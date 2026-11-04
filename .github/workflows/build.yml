@@ -1,0 +1,31 @@
+name: guards
+on:
+  push:
+    paths: ["ci/**", "ctrader/**", "ninjatrader/**", ".github/workflows/guards.yml"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
+      - name: cTrader guard (against the real cTrader.Automate package)
+        run: dotnet build ci/PropsCopilotGuard/PropsCopilotGuard/PropsCopilotGuard.csproj -c Release -warnaserror:CS0168
+      - name: NinjaTrader guard (against stand-ins of the NT8 API)
+        run: dotnet build ci/nt8/Guard.csproj -c Release
+      - name: List what was built
+        shell: bash
+        run: find guards/ci -name "*.algo" -o -name "*.dll" | grep -v obj
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guards
+          path: |
+            ci/PropsCopilotGuard/**/*.algo
+      - name: Print the cTrader build (base64, so it can be fetched from the log)
+        shell: bash
+        run: |
+          f=$(find ci/PropsCopilotGuard -name "*.algo" | head -1)
+          sha256sum "$f"
+          echo "-----BEGIN ALGO-----"; base64 -w 0 "$f"; echo; echo "-----END ALGO-----"

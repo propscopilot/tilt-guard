@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "PropsCopilot Tilt Guard",
+  "short_name": "Tilt Guard",
+  "version": "1.0.0",
+  "description": "Tilt Guard for web trading platforms: your PropsCopilot cockpit decides, the guard stops refused orders before they are sent.",
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+  "action": { "default_popup": "popup.html", "default_title": "Tilt Guard" },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["storage", "scripting", "tabs"],
+  "host_permissions": [
+    "https://propscopilot.com/*",
+    "https://*.tradelocker.com/*",
+    "https://*.match-trader.com/*",
+    "https://*.tradovate.com/*",
+    "https://*.topstepx.com/*",
+    "https://*.projectx.com/*",
+    "https://*.dx.trade/*",
+    "https://*.tradingview.com/*"
+  ],
+  "optional_host_permissions": ["https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.tradelocker.com/*", "https://*.match-trader.com/*", "https://*.tradovate.com/*",
+                  "https://*.topstepx.com/*", "https://*.projectx.com/*", "https://*.dx.trade/*", "https://*.tradingview.com/*"],
+      "js": ["page.js"], "run_at": "document_start", "world": "MAIN", "all_frames": true
+    },
+    {
+      "matches": ["https://*.tradelocker.com/*", "https://*.match-trader.com/*", "https://*.tradovate.com/*",
+                  "https://*.topstepx.com/*", "https://*.projectx.com/*", "https://*.dx.trade/*", "https://*.tradingview.com/*"],
+      "js": ["content.js"], "run_at": "document_start", "all_frames": true
+    }
+  ]
+}
