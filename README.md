@@ -27,8 +27,8 @@ and never ask for or send a broker password. The only address they contact is `h
 Get the ready-built files and step-by-step setup at **[propscopilot.com/guard](https://propscopilot.com/guard)**. You'll
 need a PropsCopilot account for the guard key.
 
-Built files are published with each release here too, with their SHA-256, so you can check that what you downloaded is
-built from this code. The cTrader cBot is built by the workflow in `.github/workflows` against the official
+The built files are also in [`dist/`](dist), with their SHA-256 in [`dist/SHA256SUMS.txt`](dist/SHA256SUMS.txt), so you
+can check that what you downloaded from propscopilot.com is the same file. The cTrader cBot is built by the workflow in `.github/workflows` against the official
 cTrader.Automate package; the MetaTrader files are built in MetaEditor.
 
 ## Before you use it
