@@ -1,7 +1,7 @@
-name: guards
+name: build
 on:
   push:
-    paths: ["ci/**", "ctrader/**", "ninjatrader/**", ".github/workflows/guards.yml"]
+    paths: ["ci/**", "ctrader/**", "ninjatrader/**", ".github/workflows/build.yml"]
   workflow_dispatch:
 jobs:
   build:
@@ -17,15 +17,12 @@ jobs:
         run: dotnet build ci/nt8/Guard.csproj -c Release
       - name: List what was built
         shell: bash
-        run: find guards/ci -name "*.algo" -o -name "*.dll" | grep -v obj
+        run: find ci -name "*.algo" -o -name "*.dll" | grep -v obj
       - uses: actions/upload-artifact@v4
         with:
-          name: guards
+          name: build
           path: |
             ci/PropsCopilotGuard/**/*.algo
-      - name: Print the cTrader build (base64, so it can be fetched from the log)
+      - name: Fingerprint of the cTrader build (compare with the file you downloaded)
         shell: bash
-        run: |
-          f=$(find ci/PropsCopilotGuard -name "*.algo" | head -1)
-          sha256sum "$f"
-          echo "-----BEGIN ALGO-----"; base64 -w 0 "$f"; echo; echo "-----END ALGO-----"
+        run: sha256sum $(find ci/PropsCopilotGuard -name "*.algo" | head -1)
